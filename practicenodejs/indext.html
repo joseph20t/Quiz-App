@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="main_text_content">EXERCISE QUESTIONS</h1>
+
+        <select id="subject_option">
+            <option value="math">Mathematics</option>
+            <option value="english">English</option>
+        </select>
+        <select id="questions_number">
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+        </select>
+        <footer>
+            <button onclick="object_data()" id="submit">Submit</button>
+        </footer>
+
+        <div id="keeping_track_of_score">
+            <p>Score:</p>
+            <p>Correct:</p>
+            <p>Wrong:</p>
+        </div>
+
+        <div style="margin-left: 40%;" id="obj_data"></div>
+        <button id="answer_submiting">Submit</button>
+        
+
+<script>
+    let option_for_subject = document.getElementById("subject_option");
+    let chooseing_num_of_questions = document.getElementById("questions_number");
+    
+    function object_data() {
+       let obj_data = document.getElementById("obj_data");
+        document.getElementById("submit").style = "display: none"
+        document.getElementById("subject_option").style = "display: none"
+        document.getElementById("questions_number").style = "display: none"
+        document.getElementById('answer_submiting').style ="display: block"
+        document.getElementById("keeping_track_of_score").style = "display: block; margin-top: 3%; font-size: 20px"
+
+        fetch(`https://kit-questions.glitch.me/question/${option_for_subject.value}/${chooseing_num_of_questions.value}`)
+        .then((response) => response.json())
+        .then((data) => {
+           let question_bank = Object.entries(data.questions);
+        //    console.log(data.questions)
+           question_bank.forEach((ele, index) => {
+               let question_options = ele[1].options;
+               let displaying_options = Object.entries(question_options)
+               let question = ele[1].question;
+               console.log(question)
+                let displaying_question = `
+                    <p>${index +1}. ${question}</p>
+                    <input type = "radio" value"" /> ${displaying_options[0]}<br>
+                    <input type = "radio" value"" /> ${displaying_options[1]}<br>
+                    <input type = "radio" value"" /> ${displaying_options[2]}<br>
+                    <input type = "radio" value"" /> ${displaying_options[3]}
+                        
+                `;
+                document.getElementById('obj_data').insertAdjacentHTML('beforeend', displaying_question)
+           });  
+        
+
+            console.log(option_for_subject.value);
+            console.log(chooseing_num_of_questions.value);
+        });
+        
+    }
+    
+</script>
+</body>
+</html>

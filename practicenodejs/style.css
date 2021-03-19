@@ -1,0 +1,40 @@
+#main_text_content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#subject_option{
+    width: 16%;
+    height: 5vh;
+    margin-left: 37%;
+    font-size: 30px;
+}
+
+#questions_number{
+    width: 10%;
+    height: 5vh;
+    font-size: 30px;
+}
+
+#submit {
+    width: 8%;
+    height: 5vh;
+    margin-top: 15px;
+    margin-left: 55%;
+    font-size: 25px;
+}
+
+#keeping_track_of_score {
+    width: 29%;
+    height: 15vh;
+    margin-left: 37%;
+    display: none;
+}
+
+#answer_submiting {
+    width: 7%;
+    height: 5vh;
+    display: none;
+    margin-left: 45%;
+    margin-top: 5%;
+}
